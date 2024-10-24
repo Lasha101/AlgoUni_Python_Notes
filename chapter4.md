@@ -115,7 +115,7 @@ finally:
 1)
 IndentationError
 
-არაზწორი ჩანაწერი:
+არასწორი ჩანაწერი:
 ```
 def greet():
 print("Hello, world!")
@@ -148,6 +148,7 @@ print(my_list[2])
 ```
 3)
 KeyError
+
 არასწორი ჩანაწერი:
 ```
 my_dict = {'name': 'Alice'}
@@ -160,6 +161,7 @@ print(my_dict['name'])
 ```
 4)
 KeyboardInterrupt
+
 უსარულო ციკლი:
 ```
 while True:
@@ -171,6 +173,7 @@ while True:
 
 5)
 NameError
+
 არასწორი ჩანაწერი:
 ```
 print(x)
@@ -183,6 +186,7 @@ print(x)
 ```
 6)
 SyntaxError
+
 არასწორი ჩანაწერი:
 ```
 if True
@@ -195,6 +199,7 @@ if True:
 ```
 7)
 TypeError
+
 არასწორი ჩანაწერი:
 ```
 x = "hello"
@@ -209,6 +214,7 @@ print(x + y)
 ```
 8)
 ValueError
+
 არასწორი ჩანაწერი:
 ```
 x = int("one hundred twenty-three") 
@@ -236,6 +242,7 @@ print(x)
 ```
 10)
 IOError
+
 არასწორი ჩანაწერი:
 ```
 try:
