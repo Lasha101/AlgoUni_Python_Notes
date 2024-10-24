@@ -113,14 +113,142 @@ finally:
 # **ხშირად შეხვედრილი გამონაკლისები**
 
 1)
+IndentationError
 
+არაზწორი ჩანაწერი:
+```
+def greet():
+print("Hello, world!")
 
+greet()
+```
+სწორი ჩანაწერი:
 
+```
+def greet():
+    print("Hello, world!")
 
+greet()
+```
+2)
+IndexError
 
+არასწორი ჩანაწერი:
+```
+my_list = [1, 2, 3]
 
+print(my_list[3])
+```
+სწორი ჩანაწერი:
 
+```
+my_list = [1, 2, 3]
 
+print(my_list[2])
+```
+3)
+KeyError
+არასწორი ჩანაწერი:
+```
+my_dict = {'name': 'Alice'}
+print(my_dict['age'])  
+```
+სწორი ჩანაწერი:
+```
+my_dict = {'name': 'Alice'}
+print(my_dict['name'])  
+```
+4)
+KeyboardInterrupt
+უსარულო ციკლი:
+```
+while True:
+    pass  
+```
+გაშვების შემდეგ გასაჩერებლად დააჭირეთ:
 
+"ctrl + c"
+
+5)
+NameError
+არასწორი ჩანაწერი:
+```
+print(x)
+```
+სწორი ჩანაწერი:
+```
+x = "Hello, Algouni"
+
+print(x)
+```
+6)
+SyntaxError
+არასწორი ჩანაწერი:
+```
+if True
+    print("Hello!")
+```
+სწორი ჩანაწერი:
+```
+if True:
+    print("Hello!")
+```
+7)
+TypeError
+არასწორი ჩანაწერი:
+```
+x = "hello"
+y = 5
+print(x + y)
+```
+სწორი ჩანაწერი:
+```
+x = "hello"
+y = " 5"
+print(x + y)
+```
+8)
+ValueError
+არასწორი ჩანაწერი:
+```
+x = int("one hundred twenty-three") 
+print(x)
+```
+სწორი ჩანაწერი:
+```
+x = int("123") 
+print(x)
+```
+9)
+ZeroDivisionError
+
+არასწორი ჩანაწერი:
+```
+x = 10 // 0
+
+print(x)
+```
+არასწორი ჩანაწერი:
+```
+x = 10 // 5
+
+print(x)
+```
+10)
+IOError
+არასწორი ჩანაწერი:
+```
+try:
+    file = open('non_existent_file.txt', 'r') 
+except IOError:
+    print("File not found or can't be opened.")
+```
+სწორი ჩანაწერი:
+```
+try:
+    file = open('existent_file.txt', 'r') 
+except IOError:
+    print("File not found or can't be opened.")
+```
 
 
