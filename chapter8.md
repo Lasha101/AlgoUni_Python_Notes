@@ -83,7 +83,7 @@ class MyClass:
     return self.attribute_1 + self.attribute_2 + self.attribute_3
 
 my_class = MyClass(3, 2, 1)
-print(my_class.instance_method()) # დაიპრინტება იქნება "6"
+print(my_class.instance_method()) # დაიპრინტება "6"
 ```
 # **რა არის თვისებები-properties და დეკორატორი?!**
 თვისებები არიან მეთოდები რომლებიც გამოიყურებიან ატრიბუტებივით. თვისებებს ვიყენებთ მაშინ როცა გვჭირდება ატრიბუტზე დამატებითი ლოგიკის გაწერა ან ატრიბუტის დასეთვა.
@@ -100,7 +100,7 @@ class MyClass:
     return self.attribute_1 * self.attribute_2
 
 my_class = MyClass(3, 5)
-print(my_class.instance_method) # დაიპრინტება იქნება "15"
+print(my_class.instance_method) # დაიპრინტება "15"
 ```
 დეკორატორის ნიშანი არის "@", დეკორატორი საშუალებას გვაძლევს მონაცემს მეთოდის საშუალებით ჩავწვდეთ ისე როგორც ატრიბუტს.
 @property დეკორატორის გამოყენებით ჩვენ შეგვიძლია ატრიბუტები ვაქციოთ "only read" ატრიბუტებად.
@@ -111,9 +111,9 @@ class MyClass:
     self.attribute_1 = data_1
 
 my_class = MyClass(3)
-print(my_class.attribute_1) # დაიპრინტება იქნება "3"
+print(my_class.attribute_1) # დაიპრინტება "3"
 my_class.attribute_1 = 5
-print(my_class.attribute_1) # დაიპრინტება იქნება "5"
+print(my_class.attribute_1) # დაიპრინტება "5"
 ```
 გამოვიყენოთ @property რომ ატრიბუტი გადავაქციოთ მხოლოდ წაკითხვად ატრიბუტად, იდულისხმება რომ შეუძლებელი გახდება ატრიბუტის მოდიფიცირება:
 
@@ -127,10 +127,31 @@ class MyClass:
     return self._attribute_1
 
 my_class = MyClass(3)
-print(my_class.attribute_1) # დაიპრინტება იქნება "3"
+print(my_class.attribute_1) # დაიპრინტება "3"
 my_class.attribute_1 = 5 # Raises: AttributeError: can't set attribute
 ```
+იმისთვის რომ ისევ შევძლოთ ატრიბუტის მოდიფიცირება გამოვიყენოთ @setter დეკორატორი:
+```
+class MyClass:
+  class_attribute = data
+  def __init__(self, data_1):
+    self._attribute_1 = data_1
+  @property
+  def instance_method(self):
+    return self._attribute_1
 
+  @instance_method.setter
+  def instance_method(self, value):  # Setter for instance_method
+        if value <= 0:
+            raise ValueError("value must be positive!")
+        self._attribute_1 = value  # Update the attribute if valid
+
+my_class = MyClass(3)
+print(my_class.attribute_1) # დაიპრინტება "3"
+my_class.attribute_1 = 5 
+print(my_class.attribute_1) # დაიპრინტება "5"
+my_class.attribute_1 = -4 # Raises: ValueError: Width must be positive!
+```
 
 
 
