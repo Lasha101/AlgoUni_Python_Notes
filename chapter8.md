@@ -32,14 +32,103 @@ class MyClass:
   ...
     instance_attribute = data_2
   ...
-    functions
+  functions
+```
+class_attribute არის კლასის ატრიბუტი ხოლო instance_attribute არის ობიექტის ატრიბუტი. კლასში ობიექტისთვის ატრიბუტების მისანიჭებლად უნდა განვსაზღვროთ ფუნქცია "def __init__(self):" რომლის სქოუფშიც შეგვიძლია გავწეროთ ინსთენსის ცვლადები "self" სიტყვის გამოყენებით:
+```
+class MyClass:
+  class_attribute = data
+  def __init__(self, data_1, data_2, data_3, ...):
+    self.attribute_1 = data_1
+    self.attribute_2 = data_2
+    self.attribute_3 = data_3
+    self.attribute_... = ...
+  ...
+  functions
+```
+"def __str__(self):" ფუნქციის განსაზღვრით ჩვენ შეგვიძლია კლასს სტრინგის სახით დავაბრუნებინოთ ჩვენთვის სასურველი ინფორმაცია:
+```
+class MyClass:
+  class_attribute = data
+  def __init__(self, data_1, data_2, data_3, ...):
+    self.attribute_1 = data_1
+    self.attribute_2 = data_2
+    self.attribute_3 = data_3
+    self.attribute_... = ...
+
+  def __str__(self):
+    return f"{self.attribute_1} is first attribute of instance"
+  ...
+  functions
+
+my_class = MyClass(3, 2, 1)
+print(my_class) # დაიპრინტება იქნება "3 is first attribute of instance"
 ```
 
+"self" სიტყვა შეგვიძლია ჩავანაცვლოთ ჩვენთვის სასურველი სიტყვით თუმცა ნებისმიერ შემთხვევაში ეს სიტყვა პირველ პარამეტრად უნდა იყოს გადაცემული __init__ ფუნქციისთვის! რაც შეეხება 
 
+# **რა არის მეთოდი?!**
+მეთოდი არის კლასში ჩაშენებული ფუნქცია-ფუნქციონალი. ეს შეიძლება იყოს კლასის მეთოდი, ინსთენსის მეთოდი ან სტატიკური მეთოდი.
+ინსთენს მეთოდი შეგვიძლია განვსაზღვროთ როგორც უბრალო ფუნქცია იმ გასხვავებით რომ პირველ პარამეტრად აუცილებლად უნდა გადავცეთ იგივე სიტყვა რაც გადავეცით __init__() ფუნქციას! ამ შემთხვევაში ლაპარაკია "self" სიტყვაზე:
+```  
+class MyClass:
+  class_attribute = data
+  def __init__(self, data_1, data_2, data_3):
+    self.attribute_1 = data_1
+    self.attribute_2 = data_2
+    self.attribute_3 = data_3
+  ...
+  def instance_method(self):
+    return self.attribute_1 + self.attribute_2 + self.attribute_3
 
+my_class = MyClass(3, 2, 1)
+print(my_class.instance_method()) # დაიპრინტება იქნება "6"
+```
+# **რა არის თვისებები-properties და დეკორატორი?!**
+თვისებები არიან მეთოდები რომლებიც გამოიყურებიან ატრიბუტებივით. თვისებებს ვიყენებთ მაშინ როცა გვჭირდება ატრიბუტზე დამატებითი ლოგიკის გაწერა ან ატრიბუტის დასეთვა.
+დეკორატორი არის საშუალება რომ ფუნქციაზე, მეთოდზე ან კლასზე დავამატოთ ფუნქციონალი ისე რომ არ შევცვალოთ მათი კოდი.
+ამ შემთხვევაში განვიხილოთ @property დეკორატორი:
+```  
+class MyClass:
+  class_attribute = data
+  def __init__(self, data_1, data_2):
+    self.attribute_1 = data_1
+    self.attribute_2 = data_2
+  @property
+  def instance_method(self):
+    return self.attribute_1 * self.attribute_2
 
+my_class = MyClass(3, 5)
+print(my_class.instance_method) # დაიპრინტება იქნება "15"
+```
+დეკორატორის ნიშანი არის "@", დეკორატორი საშუალებას გვაძლევს მონაცემს მეთოდის საშუალებით ჩავწვდეთ ისე როგორც ატრიბუტს.
+@property დეკორატორის გამოყენებით ჩვენ შეგვიძლია ატრიბუტები ვაქციოთ "only read" ატრიბუტებად.
+```  
+class MyClass:
+  class_attribute = data
+  def __init__(self, data_1):
+    self.attribute_1 = data_1
 
+my_class = MyClass(3)
+print(my_class.attribute_1) # დაიპრინტება იქნება "3"
+my_class.attribute_1 = 5
+print(my_class.attribute_1) # დაიპრინტება იქნება "5"
+```
+გამოვიყენოთ @property რომ ატრიბუტი გადავაქციოთ მხოლოდ წაკითხვად ატრიბუტად, იდულისხმება რომ შეუძლებელი გახდება ატრიბუტის მოდიფიცირება:
 
+```
+class MyClass:
+  class_attribute = data
+  def __init__(self, data_1):
+    self._attribute_1 = data_1
+  @property
+  def instance_method(self):
+    return self._attribute_1
+
+my_class = MyClass(3)
+print(my_class.attribute_1) # დაიპრინტება იქნება "3"
+my_class.attribute_1 = 5 # Raises: AttributeError: can't set attribute
+```
 
 
 
