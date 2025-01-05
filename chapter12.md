@@ -61,5 +61,5 @@ WHERE id = 1;
 DELETE FROM users;
 ```
 
-ეს კონფიგურაცია აადვილებს მონაცემთა ორგანიზებას, ამოღებას და ანალიზს SQL-ის (Structured Query Language) გამოყენებით.
+
 
